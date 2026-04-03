@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html>
-<body style="text-align:center; font-family:Arial;">
-  <h2 id="captcha">Loading...</h2>
-  <input type="text" id="input" placeholder="Nhập captcha">
-  <br><br>
-  <button onclick="checkCaptcha()">Xác nhận</button>
+<body style="display:flex; justify-content:center; align-items:center; height:100vh; font-family:Arial; background:#f9f9f9;">
+
+<div style="border:1px solid #ccc; padding:20px; background:white; border-radius:8px; text-align:left; width:280px;">
+  
+  <div onclick="verify()" style="display:flex; align-items:center; cursor:pointer;">
+    <div id="checkbox" style="width:20px; height:20px; border:2px solid #555; margin-right:10px;"></div>
+    <span>Tôi không phải robot</span>
+  </div>
+
+  <p id="status" style="font-size:14px; color:#666; margin-top:10px;"></p>
+
+</div>
 
 <script>
-let code;
+function verify(){
+  let box = document.getElementById("checkbox");
+  let status = document.getElementById("status");
 
-function generateCaptcha(){
-  code = Math.random().toString(36).substring(2,6).toUpperCase();
-  document.getElementById("captcha").innerText = code;
+  status.innerText = "Đang xác minh...";
+
+  // loading giả
+  setTimeout(()=>{
+    box.style.background = "#4CAF50";
+    box.innerHTML = "✔";
+    box.style.color = "white";
+    box.style.textAlign = "center";
+    box.style.lineHeight = "20px";
+
+    status.innerText = "Xác minh thành công";
+
+    // delay rồi chuyển trang
+    setTimeout(()=>{
+      window.location.href = "https://fo88.now/?a=b971015ae66a56560fa66a755b407c2c&utm_campaign=googleads&utm_source=inhouse&utm_medium=search&utm_term=%7Bkeyword%7D&utm_content=mainsite";
+    }, 1200);
+
+  }, 1500);
 }
-
-function checkCaptcha(){
-  let input = document.getElementById("input").value;
-  if(input === code){
-    alert("Đúng rồi!");
-  } else {
-    alert("Sai captcha!");
-  }
-}
-
-generateCaptcha();
 </script>
+
 </body>
 </html>
